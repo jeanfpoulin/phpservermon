@@ -82,6 +82,10 @@ class Database {
 	 * @param string $db
 	 */
 	function __construct($host = null, $user = null, $pass = null, $db = null) {
+		// jeanfpoulin: new functionality to allow port specification by expansion of the ':' character to ';port='
+		if($host != null)
+			$host = str_replace(":", ";port=", $host);
+
 		if($host != null && $user != null && $pass != null && $db != null) {
 			$this->db_host = $host;
 			$this->db_name = $db;
